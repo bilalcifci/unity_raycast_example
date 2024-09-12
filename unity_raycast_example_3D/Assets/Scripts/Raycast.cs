@@ -6,6 +6,7 @@ public class Raycast : MonoBehaviour
 {
     public GameObject mermi;
     public GameObject ates_noktasi;
+    public GameObject mermi_izi;
     //public Transform ates_noktasi_2;
     // Start is called before the first frame update
     void Start()
@@ -19,7 +20,17 @@ public class Raycast : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit))
             {
+                  
                 hit.transform.gameObject.GetComponent<Dusman>().DarbeAl(20);
+
+                if (hit.point != null)
+                {
+                    //Instantiate(mermi_izi, hit.point, Quaternion.identity);
+                    GameObject mermi_izi_instantiate = Instantiate(mermi_izi, hit.point, Quaternion.identity);
+                    mermi_izi_instantiate.transform.parent = hit.transform;
+                }
+                
+
 
                 //if (hit.rigidbody != null)
                 //{
